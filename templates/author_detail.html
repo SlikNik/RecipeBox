@@ -1,0 +1,42 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% include "partials/nav.html" with author='active'%}
+<div class="card" style="width: 75rem;">
+    <div class="card-body"  style="color: orangered;">
+        <h1>{{ author.name }}'s RecipeBox</h1>
+        <h4>Bio:</h4>
+        <p>{{ author.bio }}</p>
+        <h4>Email:</h4>
+        <p>{{ author.user.email }}</p>
+    </div>
+</div>
+<br/>
+<br/>
+<h3 style="color: orangered;">Recipe List</h3>
+<ul>
+    {% for recipe in recipes %}
+    <div class="card" style="width: 50rem;">
+        <div class="card-body"  style="color: orangered;">
+            <a href="/recipes/{{recipe.id}}/" class="card-link"><h5 class="card-title">{{ recipe.title }}</h5></a>
+            <p class="card-text">{{ recipe.description }}</p>
+            <a href="/recipes/{{recipe.id}}/" class="card-link">View this Recipe</a>
+        </div>
+    </div>
+    <br>
+    {% endfor %}
+</ul>
+<h3 style="color: orangered;">Favorites List</h3>
+<ul>
+    {% for recipe in favorites %}
+    <div class="card" style="width: 50rem;">
+        <div class="card-body"  style="color: orangered;">
+            <a href="/recipes/{{recipe.id}}/" class="card-link"><h5 class="card-title">{{ recipe.title }}</h5></a>
+            <p class="card-text">{{ recipe.description }}</p>
+            <a href="/recipes/{{recipe.id}}/" class="card-link">View this Recipe</a>
+        </div>
+    </div>
+    <br>
+    {% endfor %}
+</ul>
+{% endblock %}

@@ -1,0 +1,26 @@
+{% extends 'base.html' %}
+
+{% block content %}
+{% include "partials/nav.html" with recipe='active'%}
+<div class="card" style="width: 73rem;">
+    <div class="card-body" style="color: orangered;">
+        <a href="/recipes/{{recipe.id}}/" class="card-link"><h4 class="card-title">{{ recipe.title }}</h4></a>
+        <h5 class="card-title">Time Required {{ recipe.required_time}}</h5>
+        <h5 class="card-title">Description</h5>
+        <p class="card-text">{{ recipe.description }}</p>
+        <h5 class="card-title">Instructions</h5>
+        <p class="card-text">{{ recipe.instructions }}</p>
+        <h6>Date: {{ recipe.date_created}}</h6>
+        <h5>Auhtor:<a href="/author/{{recipe.author}}/" class="card-link">{{ recipe.author }}</a></h5>
+        <p>Favorites: {{ recipe.favorites.count }}</p>
+        {% if request.user in recipe.favorites.all %}
+        <button><a href="/unfavorite/{{recipe.id}}/">Un-Favorite</a></button>
+        {% else %}
+        <button><a href="/favorite/{{recipe.id}}/">Favorite</a></button>
+        {% endif %}
+        {% if request.user == recipe.author.user or request.user.is_staff %}
+        <button><a href="/recipes/{{recipe.id}}/edit/">Edit</a></button>
+        {% endif %}
+    </div>
+</div> 
+{% endblock %}

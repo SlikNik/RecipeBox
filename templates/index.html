@@ -1,0 +1,21 @@
+{% extends 'base.html' %}
+{% block content %}
+{% include "partials/nav.html" with home='active'%}
+<h1>Welcome {{ request.custom_user.author }} to the RecipeBox</h1>
+<h3>Current Recipe List</h3>
+<ul>
+    {% for recipe in recipes %}
+    <div class="card" style="width: 50rem;">
+        <div class="card-body">
+            <a href="/recipes/{{recipe.id}}/" class="card-link" style="color: orange;">
+                <h5 class="card-title">{{ recipe.title }}</h5>
+            </a>
+            <p class="card-text">{{ recipe.description }}</p>
+            <a href="/recipes/{{recipe.id}}/" class="card-link" style="color: orange;">View this Recipe</a>
+        </div>
+    </div>
+    <br>
+    {% endfor %}
+</ul>
+</div>
+{% endblock %}

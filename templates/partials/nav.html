@@ -1,0 +1,43 @@
+<ul class="nav nav-tabs" style="color: orangered;">
+    {% if request.user.is_authenticated and request.user.is_staff%}
+    <li class="nav-item">
+        <a class="nav-link {{home}}" href="/" style="color: orangered;">Home</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link {{recipe}}" href="/addrecipe/" style="color: orangered;">Add Recipe </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link {{author}}" href="/addauthor/" style="color: orangered;">Add Author</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/logout/" style="color: orangered;">Logout</a>
+    </li>
+    {% elif request.user.is_authenticated %}
+    <li class="nav-item">
+        <a class="nav-link {{home}}" href="/" style="color: orangered;">Home</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link {{recipe}}" href="/addrecipe/" style="color: orangered;">Add Recipe </a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link" href="/logout/" style="color: orangered;">Logout</a>
+    </li>
+    {% else %}
+    <li class="nav-item">
+        <a class="nav-link {{home}}" href="/" style="color: orangered;">Home</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link {{login}}" href="/login/" style="color: orangered;">Login</a>
+    </li>
+    <li class="nav-item">
+        <a class="nav-link {{signup}}" href="/signup/" style="color: orangered;">Sign Up</a>
+    </li>
+    {% endif %}
+    <div class="col-6 text-right">
+        {% if request.user.is_authenticated %}
+        <p class="pt-4">Logged in as <strong>{{ request.user.username }}</strong>. </p>
+        {% endif %}
+    </div>
+</ul>
+<br />
+<br />
